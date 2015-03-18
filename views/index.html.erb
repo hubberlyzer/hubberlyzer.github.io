@@ -6,9 +6,41 @@
 	<body>
 		<%= navbar %>
 		<div class="container">
-			hello
-		</div>
-	</body>
+			<div class="raw">
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">Top 20 Used Languages</div>
+						<div class="panel-body">
+							<canvas id="lang-count" class="chart"></canvas>
+							<div id="lang-count-lengend"></div>
+						</div>
+					</div>
+				</div>
 
-	<%= footer %>
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">Top 20 Starred Languages</div>
+						<div class="panel-body">
+							<canvas id="lang-star" class="chart"></canvas>
+							<div id="lang-star-lengend"></div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">Top 20 Impact Languages (Starred/Repos)</div>
+						<div class="panel-body">
+							<canvas id="lang-ratio" class="chart"></canvas>
+							<div id="lang-ratio-lengend"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%= footer %>
+
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				Main.init();
+			});
+		</script>
+	</body>
 </html>
