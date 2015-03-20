@@ -13,13 +13,15 @@ class Generator
     @view_path = File.expand_path("../../views", __FILE__)
   end
 
-  def run(url, max_page, options={})
+  # url - the link to organization's people page (e.g. https://github.com/orgs/github/people)
+  # max_page - maximum number of pages to fetch
+  # output - the name of the renderred html file, default is "index.html"
+  def run(url, max_page, output=nil, options={})
     puts "Fetching githubbers' profiles ..."
     get_hubbers(url, max_page, options)
-    puts "Generating charts data ..."
-    render_charts_data
+
     puts "Rendering index.html page ..."
-    render_html
+    render_html(output)
   end
 
   # Use sample data from the file
@@ -28,8 +30,7 @@ class Generator
 
     puts "Loading sample data ..."
     @hubbers = SAMPLE_USERS
-    puts "Generating charts data ..."
-    render_charts_data
+
     puts "Rendering index.html page ..."
     render_html
   end
@@ -40,29 +41,21 @@ class Generator
     @hubbers
   end
 
-  # Create json data for each chart and render the data.js.erb template
-  def render_charts_data
+  # Creat the index html page, default is "index.html"
+  def render_html(output_filename=nil)
+    output_filename ||= "index.html"
+
+    # generate the data
     top_used_languages    = get_top_used_languages(20)
     top_starred_languages = get_top_starred_languages(20)
     top_impact_languages  = get_top_impact_languages(20)
+    top_star_memebers     = get_top_star_memebers(10)
+    top_count_memebers    = get_top_count_memebers(10)
 
-    data_template = ERB.new(File.read("data.js.erb"))
-    html_content = data_template.result(binding)
-    File.open(File.join(js_path, "data.js"), "w") do |file|
-      file.puts html_content
-    end
-  end
-
-  # Creat the index html page
-  def render_html(output_filename="index.html")
     head = File.read(File.join(view_path, "_head.html"))
     navbar = File.read(File.join(view_path, "_navbar.html"))
     index = File.join(view_path, "index.html.erb")
-
     output = File.join(File.expand_path("../../", __FILE__), output_filename)
-
-    top_star_memebers  = get_top_star_memebers(10)
-    top_count_memebers = get_top_count_memebers(10)
 
     template = ERB.new(File.read(index))
 
@@ -167,5 +160,9 @@ class Generator
 end
 
 # Generator.new.run_sample
-Generator.new.run("https://github.com/orgs/github/people", 7, max_concurrency: 4)
+Generator.new.run("https://github.com/orgs/github/people", 7, "index.html", max_concurrency: 4)
+# Generator.new.run("https://github.com/orgs/google/people", 11, "google.html", max_concurrency: 4)
+# Generator.new.run("https://github.com/orgs/linkedin/people", 2, "linkedin.html", max_concurrency: 2)
+# Generator.new.run("https://github.com/orgs/Microsoft/people", 7, "microsoft.html", max_concurrency: 4)
+# Generator.new.run("https://github.com/orgs/facebook/people", 4, "facebook.html", max_concurrency: 4)
 
