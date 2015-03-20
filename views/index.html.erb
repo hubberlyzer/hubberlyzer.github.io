@@ -44,14 +44,14 @@
 								<ul class="nav nav-tabs" role="tablist" id="top-star-tab">
 									<% lang_count[0...10].each_with_index do |lang, i| %>
 								  	<li role="presentation" class=<%= i == 0 ? 'active' : "" %>>
-								  		<a href=<%= "#m-s-#{i}" %> role="tab" data-toggle="tab"><%= lang[0] %></a>
+								  		<a href=<%= "#m-r-#{i}" %> role="tab" data-toggle="tab"><%= lang[0] %></a>
 								  	</li>
 								  <% end %>
 								</ul>
 
 								<div class="tab-content">
 									<% lang_count[0...10].each_with_index do |lang, i| %>
-								  	<div role="tabpanel" class="<%= i == 0 ? 'tab-pane active' : 'tab-pane' %>" id=<%= "m-s-#{i}" %>>
+								  	<div role="tabpanel" class="<%= i == 0 ? 'tab-pane active' : 'tab-pane' %>" id=<%= "m-r-#{i}" %>>
 								  		<div class="list-group">
 								  			<% top_count_memebers[lang[0]].each do |member| %>
 								  				<a href=<%= "https://github.com/#{member['profile']['username']}" %> class="list-group-item">
