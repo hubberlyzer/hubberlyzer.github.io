@@ -1,6 +1,6 @@
 var Main = function(){
 	// pie chart that shows the count of languages
-	var renderChart = function(){
+	var topLangByRepos = function(){
 		var ctxCount = document.getElementById("lang-count").getContext("2d");
 
 		var tpl = 
@@ -17,27 +17,36 @@ var Main = function(){
 		
 	};
 
-	var renderBar = function() {
+	var topLangByStars = function(){
 		var ctxStar = document.getElementById("lang-star").getContext("2d");
 
 		var langStarChart = new Chart(ctxStar).Bar(langStarCompare);
 		
-	}
+	};
 
-	var renderRatioBar = function() {
+	var topLangByRatio = function(){
 		var ctxStarRatio = document.getElementById("lang-ratio").getContext("2d");
 
 		var langStarRatioChart = new Chart(ctxStarRatio).Bar(langStarRatio, {
 			barShowStroke: false
 		});
 		
+	};
+
+	var topTabs = function(){
+		$('#top-star-tab a').click(function (e) {
+		  e.preventDefault();
+		  console.log("here");
+		  $(this).tab('show');
+		})
 	}
 
 	return {
 		init: function(){
-			renderChart();
-			renderBar();
-			renderRatioBar();
+			topLangByRepos();
+			topLangByStars();
+			topLangByRatio();
+			// topTabs();
 		}
 	};
 }();

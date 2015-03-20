@@ -4,22 +4,22 @@ require 'json'
 
 require_relative "sample_users.rb"
 
-# profiler = Hubberlyzer::Profiler.new
+profiler = Hubberlyzer::Profiler.new
 
-# puts "Fetching profile links from team"
-# links = profiler.githubber_links("https://github.com/orgs/github/people", 7)
+puts "Fetching profile links from team"
+links = profiler.githubber_links("https://github.com/orgs/github/people", 7)
 
-# if links.length < 1
-# 	puts "Error! Failed to fetch any links."
-# 	return
-# end
+if links.length < 1
+	puts "Error! Failed to fetch any links."
+	return
+end
 
-# puts "Fetching and parsing profile information"
-# users = profiler.fetch_profile_pages(links)
+puts "Fetching and parsing profile information"
+users = profiler.fetch_profile_pages(links)
 
 # puts users.inspect
 
-analyzer = Hubberlyzer::Analyzer.new(USERS)
+analyzer = Hubberlyzer::Analyzer.new(users)
 
 lang_sum = analyzer.sum_by_language
 lang_count = analyzer.top_language("count", 20)
@@ -73,6 +73,21 @@ lang_star_ratio_bar["datasets"][1] = {
 
 lang_star_ratio_bar = JSON.generate(lang_star_ratio_bar)
 
+# top 5 contributors to top star language
+top_star_memebers = lang_star[0...10].inject({}) do |h, lang|
+	h[lang[0]] = analyzer.member_contrib(lang[0], "star")[0...10]
+	h
+end
+
+# puts top_star_memebers.inspect
+
+top_count_memebers = lang_count[0...10].inject({}) do |h, lang|
+	h[lang[0]] = analyzer.member_contrib(lang[0], "count")[0...10]
+	h
+end
+
+# puts top_count_memebers.inspect
+
 
 js_path = File.expand_path("../../assets/js", __FILE__)
 
@@ -88,7 +103,6 @@ puts "Creating index page"
 view_path = File.expand_path("../../views", __FILE__)
                  
 head = File.read(File.join(view_path, "_head.html"))
-footer = File.read(File.join(view_path, "_footer.html"))
 navbar = File.read(File.join(view_path, "_navbar.html"))
 
 # index.html.erb file location

@@ -34,9 +34,88 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<%= footer %>
 
+			<div class="raw">
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">Top 10 Members By Repos</div>
+						<div class="panel-body">
+							<div role="tabpanel">
+								<ul class="nav nav-tabs" role="tablist" id="top-star-tab">
+									<% lang_count[0...10].each_with_index do |lang, i| %>
+								  	<li role="presentation" class=<%= i == 0 ? 'active' : "" %>>
+								  		<a href=<%= "#m-s-#{i}" %> role="tab" data-toggle="tab"><%= lang[0] %></a>
+								  	</li>
+								  <% end %>
+								</ul>
+
+								<div class="tab-content">
+									<% lang_count[0...10].each_with_index do |lang, i| %>
+								  	<div role="tabpanel" class="<%= i == 0 ? 'tab-pane active' : 'tab-pane' %>" id=<%= "m-s-#{i}" %>>
+								  		<div class="list-group">
+								  			<% top_count_memebers[lang[0]].each do |member| %>
+								  				<a href=<%= "https://github.com/#{member['profile']['username']}" %> class="list-group-item">
+								  					<h4>
+								  						<%= member["profile"]["fullname"] %>
+								  						<small>(<%= member['profile']['username'] %>)</small>
+								  						<div class="stars pull-right"><%= member["count"] %>&nbsp;<i class="fa fa-database"></i></div>
+								  					</h4>
+								  				</a>
+												<% end %>
+											</div>
+								  	</div>
+								  <% end %>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">Top 10 Members By Stars</div>
+						<div class="panel-body">
+							<div role="tabpanel">
+								<ul class="nav nav-tabs" role="tablist" id="top-star-tab">
+									<% lang_star[0...10].each_with_index do |lang, i| %>
+								  	<li role="presentation" class=<%= i == 0 ? 'active' : "" %>>
+								  		<a href=<%= "#m-s-#{i}" %> role="tab" data-toggle="tab"><%= lang[0] %></a>
+								  	</li>
+								  <% end %>
+								</ul>
+
+								<div class="tab-content">
+									<% lang_star[0...10].each_with_index do |lang, i| %>
+								  	<div role="tabpanel" class="<%= i == 0 ? 'tab-pane active' : 'tab-pane' %>" id=<%= "m-s-#{i}" %>>
+								  		<div class="list-group">
+								  			<% top_star_memebers[lang[0]].each do |member| %>
+								  				<a href=<%= "https://github.com/#{member['profile']['username']}" %> class="list-group-item">
+								  					<h4>
+								  						<%= member["profile"]["fullname"] %>
+								  						<small>(<%= member['profile']['username'] %>)</small>
+								  						<div class="stars pull-right"><%= member["star"] %>&nbsp;<i class="fa fa-star"></i></div>
+								  					</h4>
+								  				</a>
+												<% end %>
+											</div>
+								  	</div>
+								  <% end %>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<p>Generated At: <%= Time.now.strftime("%Y-%m-%d %H:%M %Z") %></p>
+		  <p>Hubberlyzer is licensed under the MIT license.</p>
+		  <p>
+			  The documentation is licensed under
+			  <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0.</a>
+			  Maintained by
+			  <a href="https://github.com/steventen">Steven Yue</a>
+			</p>
+		</footer>
 		<script type="text/javascript">
 			jQuery(document).ready(function() {
 				Main.init();

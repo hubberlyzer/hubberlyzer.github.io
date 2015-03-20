@@ -48,3 +48,8 @@ ul.legend-lists .legend-color {
   margin-right: 0.5em;
   float: left
 }
+
+.stars {
+  color: #888;
+  font-size: 12px;
+}
