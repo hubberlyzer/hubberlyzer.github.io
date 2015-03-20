@@ -20,7 +20,7 @@ class Generator
     puts "Fetching githubbers' profiles ..."
     get_hubbers(url, max_page, options)
 
-    puts "Rendering index.html page ..."
+    puts "Rendering html page ..."
     render_html(output)
   end
 
@@ -160,9 +160,9 @@ class Generator
 end
 
 # Generator.new.run_sample
-Generator.new.run("https://github.com/orgs/github/people", 7, "index.html", max_concurrency: 4)
+# Generator.new.run("https://github.com/orgs/github/people", 7, "index.html", max_concurrency: 4)
 # Generator.new.run("https://github.com/orgs/google/people", 11, "google.html", max_concurrency: 4)
 # Generator.new.run("https://github.com/orgs/linkedin/people", 2, "linkedin.html", max_concurrency: 2)
 # Generator.new.run("https://github.com/orgs/Microsoft/people", 7, "microsoft.html", max_concurrency: 4)
-# Generator.new.run("https://github.com/orgs/facebook/people", 4, "facebook.html", max_concurrency: 4)
+Generator.new.run("https://github.com/orgs/facebook/people", 4, "facebook.html", max_concurrency: 4)
 
