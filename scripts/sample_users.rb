@@ -1,4 +1,5 @@
-USERS = [{"profile"=>
+class Generator
+SAMPLE_USERS = [{"profile"=>
    {"username"=>"achiu",
     "fullname"=>"Arthur Chiu",
     "location"=>"Irvine, CA",
@@ -2395,3 +2396,4 @@ USERS = [{"profile"=>
     "Clojure"=>{"count"=>3, "star"=>5},
     "Shell"=>{"count"=>1, "star"=>8},
     "JavaScript"=>{"count"=>4, "star"=>8}}}]
+end

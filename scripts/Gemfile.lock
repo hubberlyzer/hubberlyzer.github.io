@@ -1,8 +1,8 @@
 GIT
   remote: git@github.com:hubberlyzer/hubberlyzer.git
-  revision: b7a1363e6aa715d4f80defbd6ac4c1364942bcc2
+  revision: c7e0ef374cfe5d0a992bb42a91a4f799326b8c6d
   specs:
-    hubberlyzer (0.2.0)
+    hubberlyzer (0.3.0)
       nokogiri (~> 1.6)
       typhoeus (~> 0.7)
 

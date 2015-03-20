@@ -20,14 +20,14 @@ var Main = function(){
 	var topLangByStars = function(){
 		var ctxStar = document.getElementById("lang-star").getContext("2d");
 
-		var langStarChart = new Chart(ctxStar).Bar(langStarCompare);
+		var langStarChart = new Chart(ctxStar).Bar(langStar);
 		
 	};
 
 	var topLangByRatio = function(){
 		var ctxStarRatio = document.getElementById("lang-ratio").getContext("2d");
 
-		var langStarRatioChart = new Chart(ctxStarRatio).Bar(langStarRatio, {
+		var langImpactChart = new Chart(ctxStarRatio).Bar(langImpact, {
 			barShowStroke: false
 		});
 		
