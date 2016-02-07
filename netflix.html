@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <%= javascript_include_tag "https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js", "https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js" %>
+<![endif]-->
+
+<title>
+  Hubberlyzer - A Githubber Analyzer
+</title>
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/js/Chart.min.js"></script>
+<script type="text/javascript" src="assets/js/main.js"></script>
+
+<link href="assets/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+<link href="assets/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+<link href="assets/css/main.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Menu</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="./index.html" class="navbar-brand">Hubberlyzer</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./github.html">Github</a></li>
+        <li><a href="./facebook.html">Facebook</a></li>
+        <li><a href="./linkedin.html">Linkedin</a></li>
+        <li><a href="./google.html">Google</a></li>
+        <li><a href="./twitter.html">Twitter</a></li>
+        <li class="active"><a href="./netflix.html">Netflix</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="https://github.com/hubberlyzer/hubberlyzer">
+            <i class="fa fa-github"></i>
+            GitHub
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="raw">
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Top 20 Used Languages</div>
+            <div class="panel-body">
+              <canvas id="lang-count" class="chart"></canvas>
+              <div id="lang-count-lengend"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Top 20 Starred Languages</div>
+            <div class="panel-body">
+              <canvas id="lang-star" class="chart"></canvas>
+              <div id="lang-star-lengend"></div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">Top 20 Impact Languages (Starred/Repos)</div>
+            <div class="panel-body">
+              <canvas id="lang-ratio" class="chart"></canvas>
+              <div id="lang-ratio-lengend"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="raw">
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Top 10 Members By Repos</div>
+            <div class="panel-body">
+              <div role="tabpanel">
+                <ul class="nav nav-tabs" role="tablist" id="top-star-tab">
+
+                    <li role="presentation" class=active>
+                      <a href=#m-r-0 role="tab" data-toggle="tab">JavaScript</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-r-1 role="tab" data-toggle="tab">Java</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-r-2 role="tab" data-toggle="tab">Ruby</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-r-3 role="tab" data-toggle="tab">Groovy</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-r-4 role="tab" data-toggle="tab">Shell</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-r-5 role="tab" data-toggle="tab">CSS</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-r-6 role="tab" data-toggle="tab">Python</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-r-7 role="tab" data-toggle="tab">Go</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-r-8 role="tab" data-toggle="tab">Scala</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-r-9 role="tab" data-toggle="tab">HTML</a>
+                    </li>
+
+                </ul>
+
+                <div class="tab-content">
+
+                    <div role="tabpanel" class="tab-pane active" id=m-r-0>
+                      <div class="list-group">
+
+                          <a href=https://github.com/tbranyen class="list-group-item">
+                            <h4>
+                              Tim Branyen
+                              <small>(tbranyen)</small>
+                              <div class="stars pull-right">59&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/ryanburgess class="list-group-item">
+                            <h4>
+                              Ryan Burgess
+                              <small>(ryanburgess)</small>
+                              <div class="stars pull-right">42&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/jayphelps class="list-group-item">
+                            <h4>
+                              Jay Phelps
+                              <small>(jayphelps)</small>
+                              <div class="stars pull-right">33&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/matschaffer class="list-group-item">
+                            <h4>
+                              Mat Schaffer
+                              <small>(matschaffer)</small>
+                              <div class="stars pull-right">24&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/btholt class="list-group-item">
+                            <h4>
+                              Brian Holt
+                              <small>(btholt)</small>
+                              <div class="stars pull-right">21&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/semmypurewal class="list-group-item">
+                            <h4>
+                              Semmy Purewal
+                              <small>(semmypurewal)</small>
+                              <div class="stars pull-right">13&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/clarle class="list-group-item">
+                            <h4>
+                              Clarence Leung
+                              <small>(clarle)</small>
+                              <div class="stars pull-right">13&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/lyle class="list-group-item">
+                            <h4>
+                              Lyle Troxell
+                              <small>(lyle)</small>
+                              <div class="stars pull-right">11&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aglover class="list-group-item">
+                            <h4>
+                              Andrew Glover
+                              <small>(aglover)</small>
+                              <div class="stars pull-right">6&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/pk11 class="list-group-item">
+                            <h4>
+                              Peter Hausel
+                              <small>(pk11)</small>
+                              <div class="stars pull-right">5&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-r-1>
+                      <div class="list-group">
+
+                          <a href=https://github.com/brianm class="list-group-item">
+                            <h4>
+                              Brian McCallister
+                              <small>(brianm)</small>
+                              <div class="stars pull-right">25&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aglover class="list-group-item">
+                            <h4>
+                              Andrew Glover
+                              <small>(aglover)</small>
+                              <div class="stars pull-right">16&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/danveloper class="list-group-item">
+                            <h4>
+                              Dan Woods
+                              <small>(danveloper)</small>
+                              <div class="stars pull-right">13&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/jkschneider class="list-group-item">
+                            <h4>
+                              Jon Schneider
+                              <small>(jkschneider)</small>
+                              <div class="stars pull-right">10&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aspyker class="list-group-item">
+                            <h4>
+                              Andrew Spyker
+                              <small>(aspyker)</small>
+                              <div class="stars pull-right">7&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/rvs class="list-group-item">
+                            <h4>
+                              Roman V Shaposhnik
+                              <small>(rvs)</small>
+                              <div class="stars pull-right">6&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/mattstep class="list-group-item">
+                            <h4>
+                              Matt Stephenson
+                              <small>(mattstep)</small>
+                              <div class="stars pull-right">5&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/matschaffer class="list-group-item">
+                            <h4>
+                              Mat Schaffer
+                              <small>(matschaffer)</small>
+                              <div class="stars pull-right">4&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/ScottMansfield class="list-group-item">
+                            <h4>
+                              Scott Mansfield
+                              <small>(ScottMansfield)</small>
+                              <div class="stars pull-right">4&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/andrewachen class="list-group-item">
+                            <h4>
+                              Andrew Chen
+                              <small>(andrewachen)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-r-2>
+                      <div class="list-group">
+
+                          <a href=https://github.com/matschaffer class="list-group-item">
+                            <h4>
+                              Mat Schaffer
+                              <small>(matschaffer)</small>
+                              <div class="stars pull-right">34&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/brianm class="list-group-item">
+                            <h4>
+                              Brian McCallister
+                              <small>(brianm)</small>
+                              <div class="stars pull-right">10&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/semmypurewal class="list-group-item">
+                            <h4>
+                              Semmy Purewal
+                              <small>(semmypurewal)</small>
+                              <div class="stars pull-right">4&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/zethussuen class="list-group-item">
+                            <h4>
+                              Zethus Suen
+                              <small>(zethussuen)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aglover class="list-group-item">
+                            <h4>
+                              Andrew Glover
+                              <small>(aglover)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/lyle class="list-group-item">
+                            <h4>
+                              Lyle Troxell
+                              <small>(lyle)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/lorin class="list-group-item">
+                            <h4>
+                              Lorin Hochstein
+                              <small>(lorin)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/mattstep class="list-group-item">
+                            <h4>
+                              Matt Stephenson
+                              <small>(mattstep)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/mhawthorne class="list-group-item">
+                            <h4>
+                              matthew hawthorne
+                              <small>(mhawthorne)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/jmcgarr class="list-group-item">
+                            <h4>
+                              Mike McGarr
+                              <small>(jmcgarr)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-r-3>
+                      <div class="list-group">
+
+                          <a href=https://github.com/danveloper class="list-group-item">
+                            <h4>
+                              Dan Woods
+                              <small>(danveloper)</small>
+                              <div class="stars pull-right">24&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/jmcgarr class="list-group-item">
+                            <h4>
+                              Mike McGarr
+                              <small>(jmcgarr)</small>
+                              <div class="stars pull-right">5&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/claymccoy class="list-group-item">
+                            <h4>
+                              Clay McCoy
+                              <small>(claymccoy)</small>
+                              <div class="stars pull-right">4&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/quidryan class="list-group-item">
+                            <h4>
+                              Justin Ryan
+                              <small>(quidryan)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/jkschneider class="list-group-item">
+                            <h4>
+                              Jon Schneider
+                              <small>(jkschneider)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aglover class="list-group-item">
+                            <h4>
+                              Andrew Glover
+                              <small>(aglover)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/cfieber class="list-group-item">
+                            <h4>
+                              Cameron Fieber
+                              <small>(cfieber)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/joesondow class="list-group-item">
+                            <h4>
+                              Joe Sondow
+                              <small>(joesondow)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/rvs class="list-group-item">
+                            <h4>
+                              Roman V Shaposhnik
+                              <small>(rvs)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-r-4>
+                      <div class="list-group">
+
+                          <a href=https://github.com/aglover class="list-group-item">
+                            <h4>
+                              Andrew Glover
+                              <small>(aglover)</small>
+                              <div class="stars pull-right">7&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/danveloper class="list-group-item">
+                            <h4>
+                              Dan Woods
+                              <small>(danveloper)</small>
+                              <div class="stars pull-right">7&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/matschaffer class="list-group-item">
+                            <h4>
+                              Mat Schaffer
+                              <small>(matschaffer)</small>
+                              <div class="stars pull-right">6&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/brianm class="list-group-item">
+                            <h4>
+                              Brian McCallister
+                              <small>(brianm)</small>
+                              <div class="stars pull-right">6&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/rvs class="list-group-item">
+                            <h4>
+                              Roman V Shaposhnik
+                              <small>(rvs)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/cquinn class="list-group-item">
+                            <h4>
+                              Carl Quinn
+                              <small>(cquinn)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/claymccoy class="list-group-item">
+                            <h4>
+                              Clay McCoy
+                              <small>(claymccoy)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/bmoyles class="list-group-item">
+                            <h4>
+                              Brian Moyles
+                              <small>(bmoyles)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/lyle class="list-group-item">
+                            <h4>
+                              Lyle Troxell
+                              <small>(lyle)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aspyker class="list-group-item">
+                            <h4>
+                              Andrew Spyker
+                              <small>(aspyker)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-r-5>
+                      <div class="list-group">
+
+                          <a href=https://github.com/ryanburgess class="list-group-item">
+                            <h4>
+                              Ryan Burgess
+                              <small>(ryanburgess)</small>
+                              <div class="stars pull-right">15&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/zethussuen class="list-group-item">
+                            <h4>
+                              Zethus Suen
+                              <small>(zethussuen)</small>
+                              <div class="stars pull-right">5&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/clarle class="list-group-item">
+                            <h4>
+                              Clarence Leung
+                              <small>(clarle)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/jayphelps class="list-group-item">
+                            <h4>
+                              Jay Phelps
+                              <small>(jayphelps)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/cfregly class="list-group-item">
+                            <h4>
+                              Chris Fregly
+                              <small>(cfregly)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/brianjo class="list-group-item">
+                            <h4>
+                              Brian Johnson
+                              <small>(brianjo)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/btholt class="list-group-item">
+                            <h4>
+                              Brian Holt
+                              <small>(btholt)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/joesondow class="list-group-item">
+                            <h4>
+                              Joe Sondow
+                              <small>(joesondow)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/lyle class="list-group-item">
+                            <h4>
+                              Lyle Troxell
+                              <small>(lyle)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aspyker class="list-group-item">
+                            <h4>
+                              Andrew Spyker
+                              <small>(aspyker)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-r-6>
+                      <div class="list-group">
+
+                          <a href=https://github.com/lorin class="list-group-item">
+                            <h4>
+                              Lorin Hochstein
+                              <small>(lorin)</small>
+                              <div class="stars pull-right">14&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/kilink class="list-group-item">
+                            <h4>
+                              Patrick Strawderman
+                              <small>(kilink)</small>
+                              <div class="stars pull-right">4&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/q class="list-group-item">
+                            <h4>
+                              Corey Bertram
+                              <small>(q)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/clarle class="list-group-item">
+                            <h4>
+                              Clarence Leung
+                              <small>(clarle)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/bmoyles class="list-group-item">
+                            <h4>
+                              Brian Moyles
+                              <small>(bmoyles)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/mattrjacobs class="list-group-item">
+                            <h4>
+                              Matt Jacobs
+                              <small>(mattrjacobs)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/mhawthorne class="list-group-item">
+                            <h4>
+                              matthew hawthorne
+                              <small>(mhawthorne)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/coryb class="list-group-item">
+                            <h4>
+
+                              <small>(coryb)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/quidryan class="list-group-item">
+                            <h4>
+                              Justin Ryan
+                              <small>(quidryan)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-r-7>
+                      <div class="list-group">
+
+                          <a href=https://github.com/brianm class="list-group-item">
+                            <h4>
+                              Brian McCallister
+                              <small>(brianm)</small>
+                              <div class="stars pull-right">9&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/coryb class="list-group-item">
+                            <h4>
+
+                              <small>(coryb)</small>
+                              <div class="stars pull-right">6&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/ScottMansfield class="list-group-item">
+                            <h4>
+                              Scott Mansfield
+                              <small>(ScottMansfield)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/bondj class="list-group-item">
+                            <h4>
+                              Jonathan Bond
+                              <small>(bondj)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/cquinn class="list-group-item">
+                            <h4>
+                              Carl Quinn
+                              <small>(cquinn)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/jmcgarr class="list-group-item">
+                            <h4>
+                              Mike McGarr
+                              <small>(jmcgarr)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/bmoyles class="list-group-item">
+                            <h4>
+                              Brian Moyles
+                              <small>(bmoyles)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-r-8>
+                      <div class="list-group">
+
+                          <a href=https://github.com/mattrjacobs class="list-group-item">
+                            <h4>
+                              Matt Jacobs
+                              <small>(mattrjacobs)</small>
+                              <div class="stars pull-right">6&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/pk11 class="list-group-item">
+                            <h4>
+                              Peter Hausel
+                              <small>(pk11)</small>
+                              <div class="stars pull-right">4&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/stevegury class="list-group-item">
+                            <h4>
+                              Steve Gury
+                              <small>(stevegury)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/quidryan class="list-group-item">
+                            <h4>
+                              Justin Ryan
+                              <small>(quidryan)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/cfregly class="list-group-item">
+                            <h4>
+                              Chris Fregly
+                              <small>(cfregly)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/gorzell class="list-group-item">
+                            <h4>
+                              Greg Orzell
+                              <small>(gorzell)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/cfieber class="list-group-item">
+                            <h4>
+                              Cameron Fieber
+                              <small>(cfieber)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-r-9>
+                      <div class="list-group">
+
+                          <a href=https://github.com/ryanburgess class="list-group-item">
+                            <h4>
+                              Ryan Burgess
+                              <small>(ryanburgess)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/jmcgarr class="list-group-item">
+                            <h4>
+                              Mike McGarr
+                              <small>(jmcgarr)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aspyker class="list-group-item">
+                            <h4>
+                              Andrew Spyker
+                              <small>(aspyker)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/danveloper class="list-group-item">
+                            <h4>
+                              Dan Woods
+                              <small>(danveloper)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/kunalkundaje class="list-group-item">
+                            <h4>
+                              Kunal Kundaje
+                              <small>(kunalkundaje)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/jayphelps class="list-group-item">
+                            <h4>
+                              Jay Phelps
+                              <small>(jayphelps)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/btholt class="list-group-item">
+                            <h4>
+                              Brian Holt
+                              <small>(btholt)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/clarle class="list-group-item">
+                            <h4>
+                              Clarence Leung
+                              <small>(clarle)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/lorin class="list-group-item">
+                            <h4>
+                              Lorin Hochstein
+                              <small>(lorin)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/matschaffer class="list-group-item">
+                            <h4>
+                              Mat Schaffer
+                              <small>(matschaffer)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-database"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Top 10 Members By Stars</div>
+            <div class="panel-body">
+              <div role="tabpanel">
+                <ul class="nav nav-tabs" role="tablist" id="top-star-tab">
+
+                    <li role="presentation" class=active>
+                      <a href=#m-s-0 role="tab" data-toggle="tab">JavaScript</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-s-1 role="tab" data-toggle="tab">Ruby</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-s-2 role="tab" data-toggle="tab">Java</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-s-3 role="tab" data-toggle="tab">Shell</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-s-4 role="tab" data-toggle="tab">Python</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-s-5 role="tab" data-toggle="tab">Groovy</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-s-6 role="tab" data-toggle="tab">Scala</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-s-7 role="tab" data-toggle="tab">Perl</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-s-8 role="tab" data-toggle="tab">Clojure</a>
+                    </li>
+
+                    <li role="presentation" class=>
+                      <a href=#m-s-9 role="tab" data-toggle="tab">CSS</a>
+                    </li>
+
+                </ul>
+
+                <div class="tab-content">
+
+                    <div role="tabpanel" class="tab-pane active" id=m-s-0>
+                      <div class="list-group">
+
+                          <a href=https://github.com/tbranyen class="list-group-item">
+                            <h4>
+                              Tim Branyen
+                              <small>(tbranyen)</small>
+                              <div class="stars pull-right">1462&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/jayphelps class="list-group-item">
+                            <h4>
+                              Jay Phelps
+                              <small>(jayphelps)</small>
+                              <div class="stars pull-right">887&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/btholt class="list-group-item">
+                            <h4>
+                              Brian Holt
+                              <small>(btholt)</small>
+                              <div class="stars pull-right">436&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/ryanburgess class="list-group-item">
+                            <h4>
+                              Ryan Burgess
+                              <small>(ryanburgess)</small>
+                              <div class="stars pull-right">164&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/semmypurewal class="list-group-item">
+                            <h4>
+                              Semmy Purewal
+                              <small>(semmypurewal)</small>
+                              <div class="stars pull-right">72&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/matschaffer class="list-group-item">
+                            <h4>
+                              Mat Schaffer
+                              <small>(matschaffer)</small>
+                              <div class="stars pull-right">60&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/claymccoy class="list-group-item">
+                            <h4>
+                              Clay McCoy
+                              <small>(claymccoy)</small>
+                              <div class="stars pull-right">33&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/pk11 class="list-group-item">
+                            <h4>
+                              Peter Hausel
+                              <small>(pk11)</small>
+                              <div class="stars pull-right">30&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/danveloper class="list-group-item">
+                            <h4>
+                              Dan Woods
+                              <small>(danveloper)</small>
+                              <div class="stars pull-right">14&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/clarle class="list-group-item">
+                            <h4>
+                              Clarence Leung
+                              <small>(clarle)</small>
+                              <div class="stars pull-right">11&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-s-1>
+                      <div class="list-group">
+
+                          <a href=https://github.com/matschaffer class="list-group-item">
+                            <h4>
+                              Mat Schaffer
+                              <small>(matschaffer)</small>
+                              <div class="stars pull-right">830&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/semmypurewal class="list-group-item">
+                            <h4>
+                              Semmy Purewal
+                              <small>(semmypurewal)</small>
+                              <div class="stars pull-right">425&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/zethussuen class="list-group-item">
+                            <h4>
+                              Zethus Suen
+                              <small>(zethussuen)</small>
+                              <div class="stars pull-right">45&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/brianm class="list-group-item">
+                            <h4>
+                              Brian McCallister
+                              <small>(brianm)</small>
+                              <div class="stars pull-right">18&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/lyle class="list-group-item">
+                            <h4>
+                              Lyle Troxell
+                              <small>(lyle)</small>
+                              <div class="stars pull-right">10&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aglover class="list-group-item">
+                            <h4>
+                              Andrew Glover
+                              <small>(aglover)</small>
+                              <div class="stars pull-right">10&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/bmoyles class="list-group-item">
+                            <h4>
+                              Brian Moyles
+                              <small>(bmoyles)</small>
+                              <div class="stars pull-right">4&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/mattstep class="list-group-item">
+                            <h4>
+                              Matt Stephenson
+                              <small>(mattstep)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/mhawthorne class="list-group-item">
+                            <h4>
+                              matthew hawthorne
+                              <small>(mhawthorne)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/jmcgarr class="list-group-item">
+                            <h4>
+                              Mike McGarr
+                              <small>(jmcgarr)</small>
+                              <div class="stars pull-right">0&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-s-2>
+                      <div class="list-group">
+
+                          <a href=https://github.com/cfregly class="list-group-item">
+                            <h4>
+                              Chris Fregly
+                              <small>(cfregly)</small>
+                              <div class="stars pull-right">373&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/brianm class="list-group-item">
+                            <h4>
+                              Brian McCallister
+                              <small>(brianm)</small>
+                              <div class="stars pull-right">260&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aspyker class="list-group-item">
+                            <h4>
+                              Andrew Spyker
+                              <small>(aspyker)</small>
+                              <div class="stars pull-right">68&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aglover class="list-group-item">
+                            <h4>
+                              Andrew Glover
+                              <small>(aglover)</small>
+                              <div class="stars pull-right">66&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/pk11 class="list-group-item">
+                            <h4>
+                              Peter Hausel
+                              <small>(pk11)</small>
+                              <div class="stars pull-right">24&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/danveloper class="list-group-item">
+                            <h4>
+                              Dan Woods
+                              <small>(danveloper)</small>
+                              <div class="stars pull-right">23&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/jkschneider class="list-group-item">
+                            <h4>
+                              Jon Schneider
+                              <small>(jkschneider)</small>
+                              <div class="stars pull-right">13&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/ScottMansfield class="list-group-item">
+                            <h4>
+                              Scott Mansfield
+                              <small>(ScottMansfield)</small>
+                              <div class="stars pull-right">11&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/rvs class="list-group-item">
+                            <h4>
+                              Roman V Shaposhnik
+                              <small>(rvs)</small>
+                              <div class="stars pull-right">9&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/cfieber class="list-group-item">
+                            <h4>
+                              Cameron Fieber
+                              <small>(cfieber)</small>
+                              <div class="stars pull-right">8&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-s-3>
+                      <div class="list-group">
+
+                          <a href=https://github.com/jayphelps class="list-group-item">
+                            <h4>
+                              Jay Phelps
+                              <small>(jayphelps)</small>
+                              <div class="stars pull-right">532&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aglover class="list-group-item">
+                            <h4>
+                              Andrew Glover
+                              <small>(aglover)</small>
+                              <div class="stars pull-right">135&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/matschaffer class="list-group-item">
+                            <h4>
+                              Mat Schaffer
+                              <small>(matschaffer)</small>
+                              <div class="stars pull-right">20&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/brianm class="list-group-item">
+                            <h4>
+                              Brian McCallister
+                              <small>(brianm)</small>
+                              <div class="stars pull-right">16&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aspyker class="list-group-item">
+                            <h4>
+                              Andrew Spyker
+                              <small>(aspyker)</small>
+                              <div class="stars pull-right">12&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/cquinn class="list-group-item">
+                            <h4>
+                              Carl Quinn
+                              <small>(cquinn)</small>
+                              <div class="stars pull-right">4&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/pk11 class="list-group-item">
+                            <h4>
+                              Peter Hausel
+                              <small>(pk11)</small>
+                              <div class="stars pull-right">4&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/q class="list-group-item">
+                            <h4>
+                              Corey Bertram
+                              <small>(q)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/danveloper class="list-group-item">
+                            <h4>
+                              Dan Woods
+                              <small>(danveloper)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/rvs class="list-group-item">
+                            <h4>
+                              Roman V Shaposhnik
+                              <small>(rvs)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-s-4>
+                      <div class="list-group">
+
+                          <a href=https://github.com/lorin class="list-group-item">
+                            <h4>
+                              Lorin Hochstein
+                              <small>(lorin)</small>
+                              <div class="stars pull-right">241&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/kilink class="list-group-item">
+                            <h4>
+                              Patrick Strawderman
+                              <small>(kilink)</small>
+                              <div class="stars pull-right">30&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/q class="list-group-item">
+                            <h4>
+                              Corey Bertram
+                              <small>(q)</small>
+                              <div class="stars pull-right">7&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/clarle class="list-group-item">
+                            <h4>
+                              Clarence Leung
+                              <small>(clarle)</small>
+                              <div class="stars pull-right">7&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/mhawthorne class="list-group-item">
+                            <h4>
+                              matthew hawthorne
+                              <small>(mhawthorne)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/mattrjacobs class="list-group-item">
+                            <h4>
+                              Matt Jacobs
+                              <small>(mattrjacobs)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/quidryan class="list-group-item">
+                            <h4>
+                              Justin Ryan
+                              <small>(quidryan)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/coryb class="list-group-item">
+                            <h4>
+
+                              <small>(coryb)</small>
+                              <div class="stars pull-right">0&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/bmoyles class="list-group-item">
+                            <h4>
+                              Brian Moyles
+                              <small>(bmoyles)</small>
+                              <div class="stars pull-right">0&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-s-5>
+                      <div class="list-group">
+
+                          <a href=https://github.com/danveloper class="list-group-item">
+                            <h4>
+                              Dan Woods
+                              <small>(danveloper)</small>
+                              <div class="stars pull-right">130&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aglover class="list-group-item">
+                            <h4>
+                              Andrew Glover
+                              <small>(aglover)</small>
+                              <div class="stars pull-right">20&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/jkschneider class="list-group-item">
+                            <h4>
+                              Jon Schneider
+                              <small>(jkschneider)</small>
+                              <div class="stars pull-right">15&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/claymccoy class="list-group-item">
+                            <h4>
+                              Clay McCoy
+                              <small>(claymccoy)</small>
+                              <div class="stars pull-right">8&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/jmcgarr class="list-group-item">
+                            <h4>
+                              Mike McGarr
+                              <small>(jmcgarr)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/joesondow class="list-group-item">
+                            <h4>
+                              Joe Sondow
+                              <small>(joesondow)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/rvs class="list-group-item">
+                            <h4>
+                              Roman V Shaposhnik
+                              <small>(rvs)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/quidryan class="list-group-item">
+                            <h4>
+                              Justin Ryan
+                              <small>(quidryan)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/cfieber class="list-group-item">
+                            <h4>
+                              Cameron Fieber
+                              <small>(cfieber)</small>
+                              <div class="stars pull-right">0&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-s-6>
+                      <div class="list-group">
+
+                          <a href=https://github.com/pk11 class="list-group-item">
+                            <h4>
+                              Peter Hausel
+                              <small>(pk11)</small>
+                              <div class="stars pull-right">92&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/stevegury class="list-group-item">
+                            <h4>
+                              Steve Gury
+                              <small>(stevegury)</small>
+                              <div class="stars pull-right">44&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/cfregly class="list-group-item">
+                            <h4>
+                              Chris Fregly
+                              <small>(cfregly)</small>
+                              <div class="stars pull-right">23&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/mattrjacobs class="list-group-item">
+                            <h4>
+                              Matt Jacobs
+                              <small>(mattrjacobs)</small>
+                              <div class="stars pull-right">9&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/quidryan class="list-group-item">
+                            <h4>
+                              Justin Ryan
+                              <small>(quidryan)</small>
+                              <div class="stars pull-right">7&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/gorzell class="list-group-item">
+                            <h4>
+                              Greg Orzell
+                              <small>(gorzell)</small>
+                              <div class="stars pull-right">0&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/cfieber class="list-group-item">
+                            <h4>
+                              Cameron Fieber
+                              <small>(cfieber)</small>
+                              <div class="stars pull-right">0&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-s-7>
+                      <div class="list-group">
+
+                          <a href=https://github.com/matschaffer class="list-group-item">
+                            <h4>
+                              Mat Schaffer
+                              <small>(matschaffer)</small>
+                              <div class="stars pull-right">63&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/coryb class="list-group-item">
+                            <h4>
+
+                              <small>(coryb)</small>
+                              <div class="stars pull-right">6&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/lorin class="list-group-item">
+                            <h4>
+                              Lorin Hochstein
+                              <small>(lorin)</small>
+                              <div class="stars pull-right">0&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-s-8>
+                      <div class="list-group">
+
+                          <a href=https://github.com/clarle class="list-group-item">
+                            <h4>
+                              Clarence Leung
+                              <small>(clarle)</small>
+                              <div class="stars pull-right">58&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/matschaffer class="list-group-item">
+                            <h4>
+                              Mat Schaffer
+                              <small>(matschaffer)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id=m-s-9>
+                      <div class="list-group">
+
+                          <a href=https://github.com/ryanburgess class="list-group-item">
+                            <h4>
+                              Ryan Burgess
+                              <small>(ryanburgess)</small>
+                              <div class="stars pull-right">28&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aglover class="list-group-item">
+                            <h4>
+                              Andrew Glover
+                              <small>(aglover)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/cfregly class="list-group-item">
+                            <h4>
+                              Chris Fregly
+                              <small>(cfregly)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/zethussuen class="list-group-item">
+                            <h4>
+                              Zethus Suen
+                              <small>(zethussuen)</small>
+                              <div class="stars pull-right">3&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/aspyker class="list-group-item">
+                            <h4>
+                              Andrew Spyker
+                              <small>(aspyker)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/clarle class="list-group-item">
+                            <h4>
+                              Clarence Leung
+                              <small>(clarle)</small>
+                              <div class="stars pull-right">2&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/ScottMansfield class="list-group-item">
+                            <h4>
+                              Scott Mansfield
+                              <small>(ScottMansfield)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/jayphelps class="list-group-item">
+                            <h4>
+                              Jay Phelps
+                              <small>(jayphelps)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/lyle class="list-group-item">
+                            <h4>
+                              Lyle Troxell
+                              <small>(lyle)</small>
+                              <div class="stars pull-right">1&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                          <a href=https://github.com/joesondow class="list-group-item">
+                            <h4>
+                              Joe Sondow
+                              <small>(joesondow)</small>
+                              <div class="stars pull-right">0&nbsp;<i class="fa fa-star"></i></div>
+                            </h4>
+                          </a>
+
+                      </div>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>Generated At: 2016-02-07 15:55 EST</p>
+      <p>Hubberlyzer is licensed under the MIT license.</p>
+      <p>
+        The documentation is licensed under
+        <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0.</a>
+        Maintained by
+        <a href="https://github.com/steventen">Steven Yue</a>
+      </p>
+    </footer>
+    <script type="text/javascript">
+      var langCount = [{"label":"JavaScript","value":254,"color":"#f1e05a"},{"label":"Java","value":118,"color":"#b07219"},{"label":"Ruby","value":62,"color":"#701516"},{"label":"Groovy","value":45,"color":"#e69f56"},{"label":"Shell","value":39,"color":"#89e051"},{"label":"CSS","value":31,"color":"#563d7c"},{"label":"Python","value":28,"color":"#3581ba"},{"label":"Go","value":22,"color":"#375eab"},{"label":"Scala","value":19,"color":"#7dd3b0"},{"label":"HTML","value":19,"color":"#e44b23"},{"label":"CoffeeScript","value":14,"color":"#244776"},{"label":"VimL","value":11,"color":"#199c4b"},{"label":"C","value":7,"color":"#555"},{"label":"Perl","value":4,"color":"#0298c3"},{"label":"PHP","value":4,"color":"#4F5D95"},{"label":"Clojure","value":3,"color":"#db5855"},{"label":"Erlang","value":2,"color":"#0faf8d"},{"label":"Swift","value":2,"color":"#ffac45"},{"label":"Rust","value":2,"color":"#dea584"}];
+      var langStar = {"labels":["JavaScript","Ruby","Java","Shell","Python","Groovy","Scala","Perl","Clojure","CSS","VimL","C++","PHP","HTML","Go","C","Scheme","CoffeeScript","XSLT","Erlang"],"datasets":[{"label":"Stars Received","fillColor":"#FF9900","strokeColor":"#d8d8d8","highlightFill":"#CC6600","highlightStroke":"#d8d8d8","data":[3198,1346,879,731,288,180,175,69,60,44,34,25,20,18,14,12,9,7,6,5]}]};
+      var langImpact = {"labels":["JavaScript","Ruby","Java","Shell","Python","Groovy","Scala","Perl","Clojure","CSS","VimL","C++","PHP","HTML","Go","C","Scheme","CoffeeScript","XSLT","Erlang"],"datasets":[{"label":"Stars Received","fillColor":"#4183c4","highlightFill":"#0033CC","data":[12.59,21.71,7.45,18.74,10.29,4.0,9.21,17.25,20.0,1.42,3.09,6.25,5.0,0.95,0.64,1.71,9.0,0.5,6.0,2.5]},{"label":"Repos Created","fillColor":"#333","data":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]}]};
+    </script>
+    <script type="text/javascript">
+      jQuery(document).ready(function() {
+        Main.init();
+      });
+    </script>
+  </body>
+</html>

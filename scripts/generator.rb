@@ -65,7 +65,7 @@ class Generator
       file.puts html_content
     end
   end
-  
+
   # Pie chart for top used languages based on total count of repos
   def get_top_used_languages(top=20)
     @lang_count = analyzer.top_language("count", top)
@@ -146,7 +146,7 @@ class Generator
     end
     candidates
   end
-  
+
   def analyzer
     if @hubbers.nil?
       raise RuntimeError, "You should generate some data first!"
@@ -160,9 +160,9 @@ class Generator
 end
 
 # Generator.new.run_sample
-# Generator.new.run("https://github.com/orgs/github/people", 7, "index.html", max_concurrency: 4)
-# Generator.new.run("https://github.com/orgs/google/people", 11, "google.html", max_concurrency: 4)
+# Generator.new.run("https://github.com/orgs/github/people", 7, "github.html", max_concurrency: 4)
+# Generator.new.run("https://github.com/orgs/google/people", 24, "google.html", max_concurrency: 4)
 # Generator.new.run("https://github.com/orgs/linkedin/people", 2, "linkedin.html", max_concurrency: 2)
-# Generator.new.run("https://github.com/orgs/Microsoft/people", 7, "microsoft.html", max_concurrency: 4)
-Generator.new.run("https://github.com/orgs/facebook/people", 4, "facebook.html", max_concurrency: 4)
-
+# Generator.new.run("https://github.com/orgs/Netflix/people", 2, "netflix.html", max_concurrency: 1)
+# Generator.new.run("https://github.com/orgs/facebook/people", 10, "facebook.html", max_concurrency: 4)
+# Generator.new.run("https://github.com/orgs/twitter/people", 7, "twitter.html", max_concurrency: 4)
